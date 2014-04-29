@@ -1,5 +1,6 @@
-class SiteController < ApplicationController
-  def home
+require 'sinatra'
+
+get '/' do
     @noun       = [
                     "The Cloud", 
                     "disruptor", 
@@ -18,7 +19,7 @@ class SiteController < ApplicationController
 
     @adjective  = [
                     "quantum", 
-                    "scale"
+                    "scale",
                     "HTML5", 
                     "native", 
                     "disruptive", 
@@ -45,5 +46,7 @@ class SiteController < ApplicationController
                    "Powering [noun] one [adjective] step at a time"]    
     
     @tagline = @sentence.sample.gsub("[adjective]", @adjective.sample).gsub("[noun]", @noun.sample)
-  end
+
+    erb :index, :layout => :layout
+
 end
